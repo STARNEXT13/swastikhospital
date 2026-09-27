@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - OPD Appointments | Swastik Hospital</title>
+  <!-- Robots Meta Tag (Do not index Admin Page) -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://swastikhospital.vercel.app/admin.html" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- SheetJS Library for Excel (.xlsx) Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    .admin-header {
+      background: #1E293B;
+      border-bottom: 1px solid #334155;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #38BDF8;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .pin-card {
+      max-width: 420px;
+      margin: 5rem auto;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+    .pin-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.25rem;
+      text-align: center;
+      letter-spacing: 4px;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0F172A;
+      color: #FFF;
+      margin: 1.5rem 0;
+      box-sizing: border-box;
+    }
+    .pin-input:focus {
+      outline: none;
+      border-color: #38BDF8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+    }
+    .admin-card {
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-box {
+      background: #0F172A;
+      border: 1px solid #334155;
+      padding: 1.25rem;
+      border-radius: 8px;
+    }
+    .stat-box h4 {
+      margin: 0 0 0.5rem 0;
+      color: #94A3B8;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #38BDF8;
+    }
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .search-input {
+      padding: 8px 14px;
+      background: #0F172A;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      color: #FFF;
+      width: 260px;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .admin-table th {
+      background: #0F172A;
+      padding: 12px;
+      color: #94A3B8;
+      border-bottom: 1px solid #334155;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+    .admin-table td {
+      padding: 12px;
+      border-bottom: 1px solid #334155;
+      font-size: 0.9rem;
+      color: #E2E8F0;
+    }
+    .admin-table tr:hover {
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .btn-excel {
+      background: #10B981;
+      color: #FFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-excel:hover {
+      background: #059669;
+    }
+    .btn-danger {
+      background: #EF4444;
+      color: #FFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-danger:hover {
+      background: #DC2626;
+    }
+    .badge-service {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38BDF8;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Bar -->
+  <header class="admin-header">
+    <div class="admin-brand">
+      <i class="fas fa-user-shield"></i>
+      <span>Swastik Hospital - Admin OPD Portal</span>
+    </div>
+    <div id="admin-top-controls" style="display: none;">
+      <a href="index.html" style="color: #94A3B8; text-decoration: none; margin-right: 1.5rem;">
+        <i class="fas fa-globe"></i> View Website
+      </a>
+      <button class="btn-danger" style="padding: 6px 12px;" onclick="adminLogout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <div class="admin-container">
+
+    <!-- 1. PIN Authentication Screen -->
+    <div id="pin-screen" class="pin-card">
+      <div style="font-size: 3rem; color: #38BDF8; margin-bottom: 1rem;">
+        <i class="fas fa-lock"></i>
+      </div>
+      <h2 style="margin: 0; color: #FFF;">Hospital Staff Login</h2>
+      <p style="color: #94A3B8; font-size: 0.9rem; margin-top: 6px;">
+        OPD Records access karne ke liye Admin PIN enter karein
+      </p>
+
+      <form id="admin-pin-form">
+        <input type="password" id="admin-pin-input" class="pin-input" placeholder="Enter PIN (Default: 1234)" maxlength="8" required autofocus>
+        <button type="submit" class="btn-excel" style="width: 100%; justify-content: center; padding: 12px;">
+          <i class="fas fa-key"></i> Unlock OPD Dashboard
+        </button>
+      </form>
+      <p id="pin-error-msg" style="color: #F87171; margin-top: 1rem; display: none; font-weight: 600;"></p>
+    </div>
+
+    <!-- 2. Protected Dashboard Screen -->
+    <div id="dashboard-screen" style="display: none;">
+      
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h4>Total OPD Appointments</h4>
+          <div class="num" id="stat-total">0</div>
+        </div>
+        <div class="stat-box">
+          <h4>Today's Bookings</h4>
+          <div class="num" id="stat-today" style="color: #10B981;">0</div>
+        </div>
+        <div class="stat-box">
+          <h4>Export Format</h4>
+          <div class="num" style="font-size: 1.25rem; color: #F59E0B; margin-top: 6px;">
+            <i class="fas fa-file-excel"></i> MS Excel (.xlsx)
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Data Card -->
+      <div class="admin-card">
+        <div class="table-controls">
+          <div>
+            <h3 style="margin: 0; color: #FFF;">Patient Booking Records</h3>
+            <span style="color: #94A3B8; font-size: 0.85rem;">Private Hospital Data (Admin Access Only)</span>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" id="admin-search-input" class="search-input" placeholder="🔍 Search patient / phone...">
+            <button type="button" class="btn-excel" onclick="exportAdminDataToExcel()">
+              <i class="fas fa-download"></i> Download Excel Sheet (.xlsx)
+            </button>
+            <button type="button" class="btn-danger" onclick="clearAdminRecords()">
+              <i class="fas fa-trash-alt"></i> Clear Records
+            </button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; margin-top: 1rem;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date / Time</th>
+                <th>Patient Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Preferred Date</th>
+                <th>Service / Department</th>
+                <th>Symptoms / Message</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="config/site-data.js"></script>
+  <script>
+    const STORAGE_KEY = "swastik_opd_appointments";
+    const SESSION_KEY = "swastik_admin_logged_in";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAuthStatus();
+
+      document.getElementById("admin-pin-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const enteredPin = document.getElementById("admin-pin-input").value.trim();
+        const expectedPin = (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.adminConfig) ? SITE_CONFIG.adminConfig.pin : "1234";
+
+        if (enteredPin === expectedPin) {
+          sessionStorage.setItem(SESSION_KEY, "true");
+          checkAuthStatus();
+        } else {
+          const errEl = document.getElementById("pin-error-msg");
+          errEl.textContent = "Galat PIN! Kripya sahi PIN enter karein (Default: 1234).";
+          errEl.style.display = "block";
+        }
+      });
+
+      document.getElementById("admin-search-input").addEventListener("input", () => {
+        renderAdminRecords();
+      });
+    });
+
+    function checkAuthStatus() {
+      const isAuthenticated = sessionStorage.getItem(SESSION_KEY) === "true";
+      const pinScreen = document.getElementById("pin-screen");
+      const dashboardScreen = document.getElementById("dashboard-screen");
+      const topControls = document.getElementById("admin-top-controls");
+
+      if (isAuthenticated) {
+        pinScreen.style.display = "none";
+        dashboardScreen.style.display = "block";
+        topControls.style.display = "block";
+        renderAdminRecords();
+      } else {
+        pinScreen.style.display = "block";
+        dashboardScreen.style.display = "none";
+        topControls.style.display = "none";
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem(SESSION_KEY);
+      checkAuthStatus();
+    }
+
+    function getAppointments() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderAdminRecords() {
+      const tbody = document.getElementById("admin-table-body");
+      const records = getAppointments();
+      const searchTerm = document.getElementById("admin-search-input").value.toLowerCase().trim();
+
+      // Stats
+      document.getElementById("stat-total").textContent = records.length;
+      const todayStr = new Date().toLocaleDateString();
+      const todayCount = records.filter(r => new Date(r.id).toLocaleDateString() === todayStr).length;
+      document.getElementById("stat-today").textContent = todayCount;
+
+      const filtered = records.filter(r => {
+        return (r.Name && r.Name.toLowerCase().includes(searchTerm)) ||
+               (r.Phone && r.Phone.includes(searchTerm)) ||
+               (r.Service && r.Service.toLowerCase().includes(searchTerm));
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" style="text-align: center; padding: 2rem; color: #64748B;">
+              <i class="fas fa-folder-open" style="font-size: 2rem; margin-bottom: 8px; display: block; color: #475569;"></i>
+              Koi OPD appointment record nahi mila.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((item, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td style="color: #94A3B8;">${item.Timestamp || 'N/A'}</td>
+          <td style="font-weight: 700; color: #FFF;">${item.Name}</td>
+          <td style="color: #38BDF8; font-weight: 600;">${item.Phone}</td>
+          <td style="color: #CBD5E1;">${item.Email || 'N/A'}</td>
+          <td style="color: #F59E0B;">${item.Date || 'N/A'}</td>
+          <td><span class="badge-service">${item.Service}</span></td>
+          <td style="color: #94A3B8; max-width: 200px; word-wrap: break-word;">${item.Message || 'N/A'}</td>
+          <td>
+            <button type="button" class="btn-danger" style="padding: 4px 8px; font-size: 0.8rem;" onclick="deleteSingleAdminRecord(${item.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteSingleAdminRecord(id) {
+      if (confirm("Kya aap is record ko delete karna chahte hain?")) {
+        let records = getAppointments();
+        records = records.filter(r => r.id !== id);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+        renderAdminRecords();
+      }
+    }
+
+    function clearAdminRecords() {
+      if (confirm("⚠️ WARNING: Kya aap sabhi patient OPD records permanent clear karna chahte hain?")) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+        renderAdminRecords();
+      }
+    }
+
+    function exportAdminDataToExcel() {
+      const records = getAppointments();
+      if (!records || records.length === 0) {
+        alert("Export karne ke liye koi record nahi hain.");
+        return;
+      }
+
+      if (typeof XLSX === "undefined") {
+        alert("SheetJS Excel library missing. Page refresh karein.");
+        return;
+      }
+
+      const rows = records.map((item, idx) => ({
+        "S.No": idx + 1,
+        "Timestamp": item.Timestamp || "",
+        "Patient Name": item.Name || "",
+        "Phone Number": item.Phone || "",
+        "Email": item.Email || "",
+        "Preferred Date": item.Date || "",
+        "Department / Service": item.Service || "",
+        "Patient Symptoms / Message": item.Message || ""
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(rows);
+      ws["!cols"] = [
+        { wch: 6 }, { wch: 22 }, { wch: 22 }, { wch: 16 },
+        { wch: 25 }, { wch: 16 }, { wch: 30 }, { wch: 40 }
+      ];
+
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "OPD_Appointments");
+      XLSX.writeFile(wb, "Swastik_Hospital_OPD_Appointments.xlsx");
+    }
+  </script>
+</body>
+</html>

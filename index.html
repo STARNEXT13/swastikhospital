@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swastik Hospital | Dr. L.N. Sharma (MD Medicine)</title>
-  <meta name="description" content="Swastik Hospital - 24x7 Emergency Care, ICU, General & Internal Medicine by Dr. L.N. Sharma (MD Medicine). Contact: 987654321, Email: swastikhospital@gmail.com">
-  <meta name="keywords" content="Swastik Hospital, Dr LN Sharma, MD Medicine, Hospital near me, ICU Care, Emergency Medical Service, General Physician">
+  <meta name="description"
+    content="Swastik Hospital - 24x7 Emergency Care, ICU, General & Internal Medicine by Dr. L.N. Sharma (MD Medicine). Contact: 987654321, Email: swastikhospital@gmail.com">
+  <meta name="keywords"
+    content="Swastik Hospital, Dr LN Sharma, MD Medicine, Hospital near me, ICU Care, Emergency Medical Service, General Physician">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://swastikhospital.vercel.app/" />
 
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
+  <!-- SheetJS Library for Excel (.xlsx) Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- ==================== TOP CONTACT BAR ==================== -->
@@ -89,7 +99,8 @@
           Aapki Sehat Ka Vishwas, <br><span>Swastik Hospital</span> Ke Saath
         </h1>
         <p class="hero-desc">
-          Senior Physician <strong>Dr. L.N. Sharma (MD Medicine)</strong> ke vishwasniya margdarshan me 24/7 aadhunik ilaj, emergency care, pathology lab aur ICU suvidha.
+          Senior Physician <strong>Dr. L.N. Sharma (MD Medicine)</strong> ke vishwasniya margdarshan me 24/7 aadhunik
+          ilaj, emergency care, pathology lab aur ICU suvidha.
         </p>
 
         <div class="hero-buttons">
@@ -119,7 +130,8 @@
 
       <div class="hero-visual">
         <div class="hero-image-wrapper">
-          <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=800&q=80" alt="Swastik Hospital Building">
+          <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=800&q=80"
+            alt="Swastik Hospital Building">
         </div>
 
         <div class="hero-card-float hero-card-1">
@@ -151,7 +163,8 @@
       <div class="doctor-card-box">
         <div class="doctor-grid">
           <div class="doctor-avatar-box">
-            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" alt="Dr. L.N. Sharma MD Medicine" class="doctor-img">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80"
+              alt="Dr. L.N. Sharma MD Medicine" class="doctor-img">
             <span class="doctor-exp-badge doctor-exp-text">15+ Years Experience</span>
           </div>
 
@@ -163,7 +176,9 @@
             <span class="doctor-degree doctor-degree-text">MD Medicine</span>
             <p class="doctor-designation-text" style="color: #CBD5E1; font-weight: 600; margin-bottom: 1rem;"></p>
             <p class="doctor-bio doctor-bio-text">
-              Dr. L.N. Sharma (MD Medicine) internal medicine aur chronic disease management ke specialist hain. Swastik Hospital me complex medical cases, viral fevers, diabetes, hypertension aur ICU patient management me aadhunik va prabhavkari ilaj pradan karte hain.
+              Dr. L.N. Sharma (MD Medicine) internal medicine aur chronic disease management ke specialist hain. Swastik
+              Hospital me complex medical cases, viral fevers, diabetes, hypertension aur ICU patient management me
+              aadhunik va prabhavkari ilaj pradan karte hain.
             </p>
 
             <h5 style="color: #FFFFFF; font-size: 1.05rem; margin-bottom: 0.85rem;">
@@ -192,7 +207,8 @@
       <div class="text-center mx-auto" style="max-width: 650px;">
         <span class="section-subtitle"><i class="fas fa-hand-holding-medical"></i> Clinical Services</span>
         <h2 class="section-title">Hamari Aadhunik <span>Swasthya Sevaayein</span></h2>
-        <p class="section-desc">Swastik Hospital me hum har patient ko uchtam gunwatta ki swasthya sevaayein pradan karne ke liye pratibaddh hain.</p>
+        <p class="section-desc">Swastik Hospital me hum har patient ko uchtam gunwatta ki swasthya sevaayein pradan
+          karne ke liye pratibaddh hain.</p>
       </div>
 
       <div class="services-grid" id="services-grid">
@@ -277,14 +293,7 @@
             </div>
           </div>
 
-          <!-- Google Sheets Setup Helper Notice -->
-          <div class="gsheet-config-notice">
-            <div id="gsheet-status-text" style="margin-bottom: 0.4rem;"></div>
-            <div>
-              Google Sheet me form data receive karne ke liye
-              <button type="button" id="open-guide-btn"><i class="fas fa-external-link-alt"></i> Setup Guide Dekhein</button>
-            </div>
-          </div>
+
         </div>
 
         <!-- Right Column: Interactive Form -->
@@ -321,7 +330,8 @@
 
               <div class="form-group full-width">
                 <label for="patient-message">Samasya Ya Bimarai Ki Jaankari (Message)</label>
-                <textarea id="patient-message" class="form-control" placeholder="Kripya apni bimari ya symptoms ke bare me thoda batayein..."></textarea>
+                <textarea id="patient-message" class="form-control"
+                  placeholder="Kripya apni bimari ya symptoms ke bare me thoda batayein..."></textarea>
               </div>
             </div>
 
@@ -345,13 +355,9 @@
 
       <div style="margin-top: 3rem;" class="map-container">
         <!-- Interactive Google Maps View Embed -->
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.996232549215!2d77.2090212!3d28.6139391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjhCsDM2JzUwLjIiTiA3N8KwMTInMzIuNSJF!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin" 
-          width="100%" 
-          height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.996232549215!2d77.2090212!3d28.6139391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjhCsDM2JzUwLjIiTiA3N8KwMTInMzIuNSJF!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
         </iframe>
       </div>
     </div>
@@ -372,7 +378,8 @@
             </div>
           </div>
           <p>
-            Senior Consultant Physician <strong>Dr. L.N. Sharma (MD Medicine)</strong> ke netrutva me 24/7 aadhunik medical & emergency suvidhaayein.
+            Senior Consultant Physician <strong>Dr. L.N. Sharma (MD Medicine)</strong> ke netrutva me 24/7 aadhunik
+            medical & emergency suvidhaayein.
           </p>
         </div>
 
@@ -401,101 +408,83 @@
         <div>
           <h4 class="footer-title">Contact Info</h4>
           <div class="footer-links">
-            <span><i class="fas fa-phone" style="color: var(--primary);"></i> <strong class="top-phone-num">987654321</strong></span>
-            <span><i class="fas fa-envelope" style="color: var(--primary);"></i> <strong class="top-email">swastikhospital@gmail.com</strong></span>
-            <span><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> <span class="top-address">Main Road, Swastik Square</span></span>
+            <span><i class="fas fa-phone" style="color: var(--primary);"></i> <strong
+                class="top-phone-num">987654321</strong></span>
+            <span><i class="fas fa-envelope" style="color: var(--primary);"></i> <strong
+                class="top-email">swastikhospital@gmail.com</strong></span>
+            <span><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> <span class="top-address">Main
+                Road, Swastik Square</span></span>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>&copy; 2026 Swastik Hospital. All Rights Reserved.</div>
-        <div>Managed by Dr. L.N. Sharma (MD Medicine)</div>
+        <div>
+          Managed by Dr. L.N. Sharma (MD Medicine) |
+          <a href="admin.html" style="color: #94A3B8; text-decoration: underline; margin-left: 6px;">
+            <i class="fas fa-user-shield"></i> Hospital Staff Login
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- ==================== GOOGLE SHEETS SETUP GUIDE MODAL ==================== -->
-  <div class="modal-backdrop" id="guide-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3><i class="fas fa-table" style="color: var(--primary);"></i> Google Sheet Se Form Kaise Link Karein?</h3>
-        <button class="modal-close" id="close-guide-btn">&times;</button>
+  <!-- ==================== OPD EXCEL DATA MANAGER MODAL (PROTECTED BY ADMIN PIN) ==================== -->
+  <div class="modal-backdrop" id="excel-modal">
+    <div class="modal-card" style="max-width: 900px; width: 95%;">
+      <div class="modal-header" style="background: #064E3B; color: #FFFFFF;">
+        <h3><i class="fas fa-file-excel" style="color: #34D399;"></i> OPD Appointments - Admin Excel Portal (.xlsx)</h3>
+        <button class="modal-close" id="close-excel-modal-btn" style="color: #FFFFFF;">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="color: #64748B; margin-bottom: 1.5rem; font-size: 0.95rem;">
-          Jab koi user website par form bharega, to uska data aapki <strong>Google Sheet</strong> me auto-save ho jayega. Niche diye 5 simple steps ko follow karein:
+        <p style="color: #475569; margin-bottom: 1rem; font-size: 0.95rem;">
+          Website se booked sabhi OPD Appointments ka record yaha dekhein aur <strong>Microsoft Excel (.xlsx)</strong>
+          file download karein.
         </p>
 
-        <div class="guide-step">
-          <div class="guide-step-num">1</div>
-          <h5>Google Sheet Banayein</h5>
-          <p>Apne Google Account se <a href="https://sheets.google.com" target="_blank" style="color: var(--primary); font-weight:700;">sheets.google.com</a> kholein aur ek New Sheet banayein (Naam: <strong>Swastik Hospital Appointments</strong>).</p>
-        </div>
+        <div
+          style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; justify-content: space-between; background: #F1F5F9; padding: 12px 16px; border-radius: 8px;">
+          <div>
+            <strong style="color: #1E293B;">Total Booked Appointments: </strong>
+            <span id="excel-count-badge"
+              style="background: #10B981; color: #FFF; padding: 2px 8px; border-radius: 12px; font-weight: bold;">0</span>
+          </div>
 
-        <div class="guide-step">
-          <div class="guide-step-num">2</div>
-          <h5>Extensions > Apps Script Kholein</h5>
-          <p>Google Sheet ke Top Menu me <strong>Extensions</strong> par click karein aur <strong>Apps Script</strong> par click karein.</p>
-        </div>
-
-        <div class="guide-step">
-          <div class="guide-step-num">3</div>
-          <h5>Ye Script Code Paste Karein</h5>
-          <p>Purana code mita kar niche diya hua code paste kar dein:</p>
-          <div class="code-block">
-            <button class="copy-code-btn" onclick="copyScriptCode()"><i class="fas fa-copy"></i> Copy Code</button>
-            <pre id="apps-script-code">
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
-    
-    // Auto-create Header Row if Sheet is Empty
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Timestamp", "Name", "Phone", "Email", "Date", "Service", "Message"]);
-    }
-    
-    sheet.appendRow([
-      data.Timestamp || new Date().toLocaleString(),
-      data.Name || "",
-      data.Phone || "",
-      data.Email || "",
-      data.Date || "",
-      data.Service || "",
-      data.Message || ""
-    ]);
-    
-    return ContentService.createTextOutput(JSON.stringify({result: "success"}))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch(error) {
-    return ContentService.createTextOutput(JSON.stringify({result: "error", error: error.message}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}</pre>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary btn-sm" id="export-all-excel-btn"
+              style="background: #10B981; border-color: #10B981;">
+              <i class="fas fa-file-download"></i> Export All To Excel (.xlsx)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="clear-all-excel-btn"
+              style="color: #EF4444; border-color: #EF4444;">
+              <i class="fas fa-trash-alt"></i> Clear All Records
+            </button>
           </div>
         </div>
 
-        <div class="guide-step">
-          <div class="guide-step-num">4</div>
-          <h5>Deploy As Web App</h5>
-          <p>Top Right me <strong>Deploy > New Deployment</strong> par click karein.</p>
-          <p>• Select type: <strong>Web App</strong></p>
-          <p>• Description: <strong>Hospital Form API</strong></p>
-          <p>• Who has access: <strong>Anyone</strong> (Ye step jaruri hai)</p>
-          <p>• <strong>Deploy</strong> button par click karein aur Google Permission Allow karein.</p>
+        <div style="max-height: 380px; overflow-y: auto; border: 1px solid #E2E8F0; border-radius: 8px;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;"
+            id="excel-records-table">
+            <thead>
+              <tr style="background: #0F172A; color: #F8FAFC;">
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">#</th>
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">Date/Time</th>
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">Patient Name</th>
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">Phone</th>
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">Service</th>
+                <th style="padding: 10px; border-bottom: 1px solid #334155;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="excel-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
         </div>
 
-        <div class="guide-step">
-          <div class="guide-step-num">5</div>
-          <h5>URL Ko config/site-data.js Me Save Karein</h5>
-          <p>Deploy hone ke baad aapko ek <strong>Web App URL</strong> milega (jo <code>https://script.google.com/macros/s/.../exec</code> se shuru hoga).</p>
-          <p>Us URL ko copy karein aur apne website folder me <code>config/site-data.js</code> file khol kar <code>googleSheetScriptUrl</code> me paste kar dein!</p>
-        </div>
-
-        <div style="text-align: center; margin-top: 2rem;">
-          <button class="btn btn-primary" onclick="document.getElementById('guide-modal').classList.remove('show')">
-            <i class="fas fa-check"></i> Samajh Gaya, Done!
+        <div style="text-align: right; margin-top: 1.5rem;">
+          <button class="btn btn-secondary btn-sm" id="close-excel-footer-btn">
+            Close
           </button>
         </div>
       </div>
@@ -506,4 +495,5 @@ function doPost(e) {
   <script src="config/site-data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

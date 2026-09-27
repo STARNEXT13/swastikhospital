@@ -35,10 +35,18 @@ const SITE_CONFIG = {
     opdTimings: "Mon - Sat: 10:00 AM - 2:00 PM & 5:00 PM - 8:00 PM (Sun Emergency Only)"
   },
 
-  // 🔗 GOOGLE SHEET LINK (Google Apps Script Web App URL)
-  // Apni Google Sheet se mila URL yaha single quotes (' ') ke beech me paste karein:
-  // Example: "https://script.google.com/macros/s/AKfycbx.../exec"
-  googleSheetScriptUrl: "", 
+  // 📊 MICROSOFT EXCEL (.xlsx) & ADMIN CONFIG
+  excelConfig: {
+    fileName: "Swastik_Hospital_OPD_Appointments.xlsx",
+    autoDownloadOnBooking: false, // Patient browser par public download off (Only Admin can export)
+    sheetName: "OPD_Appointments"
+  },
+
+  // 🔒 HOSPITAL ADMIN SECURITY CONFIG
+  adminConfig: {
+    pin: "1234", // Hospital Staff / Admin Login PIN (Default: 1234)
+    sessionKey: "swastik_admin_authenticated"
+  },
 
   // Hospital Services
   services: [
